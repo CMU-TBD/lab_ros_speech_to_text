@@ -50,8 +50,8 @@ def main():
     while True:
         #restart the client and sample
         stream = audioStreamingObject()
-        print(stream.closed)
-
+        #print(stream.closed)
+        print("starting stream")
         #close thread
         close_thread = threading.Thread(target=close_loop, args=(stream,))
         close_thread.start()
@@ -59,13 +59,19 @@ def main():
         sample = client.sample(stream=stream,
             encoding=speech.Encoding.LINEAR16,
             sample_rate_hertz=16000)
-        results = sample.streaming_recognize(language_code='en-US')
+        results = sample.streaming_recognize(
+            language_code='en-US',
+            interim_results=True
+        )
         for result in results:
             for alternative in result.alternatives:
-
                 msg = Speech_msg()
                 msg.text = str(alternative.transcript)
-                msg.confidence = float(alternative.confidence)
+                if alternative.confidence is not None:
+                    msg.confidence = float(alternative.confidence)
+                else:
+                    msg.confidence = 0
+                msg.is_final = result.is_final
                 pub.publish(msg)
 
         rospy.loginfo("restarting google speech api due to time limit")
