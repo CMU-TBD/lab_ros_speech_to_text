@@ -2,6 +2,6 @@
     <node name="google_stt" pkg="lab_ros_speech_to_text" respawn="true" type="stt.py">
         <!-- local hack to allow us to include virtualenv into the equation -->
         <env name="PYTHONPATH" value="$(env PYTHONPATH):/home/zhi/Dev/ros_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/home/zhi/Dev/ENVs/cozmo_study/lib/python35.zip:/home/zhi/Dev/ENVs/cozmo_study/lib/python3.5:/home/zhi/Dev/ENVs/cozmo_study/lib/python3.5/plat-x86_64-linux-gnu:/home/zhi/Dev/ENVs/cozmo_study/lib/python3.5/lib-dynload:/usr/lib/python3.5:/usr/lib/python3.5/plat-x86_64-linux-gnu:/home/zhi/Dev/ENVs/cozmo_study/lib/python3.5/site-packages" />
-        <env name="GOOGLE_APPLICATION_CREDENTIALS" value="/home/zhi/Keys/robot-bully-e5ecca828e13.json" />
+        <env name="GOOGLE_APPLICATION_CREDENTIALS" value="/home/zhi/Keys/google_service_account.json" />
     </node>
 </launch>
