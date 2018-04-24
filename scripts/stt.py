@@ -47,11 +47,13 @@ def main():
     rospy.init_node('stt_node')
     pub = rospy.Publisher('stt', Speech_msg, queue_size=10)
 
-    while True:
+    #TODO: check if rospy is shutting down and kill the program
+
+    while not rospy.is_shutdown():
         #restart the client and sample
         stream = audioStreamingObject()
         #print(stream.closed)
-        print("starting stream")
+        rospy.loginfo("starting stream audio to Google")
         #close thread
         close_thread = threading.Thread(target=close_loop, args=(stream,))
         close_thread.start()
