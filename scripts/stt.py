@@ -39,16 +39,16 @@ class audioStreamingObject():
         self.closed = True
 
 def close_loop(stream):
-    time.sleep(60)
+    for i in range(0,60):
+        time.sleep(1)
+        if rospy.is_shutdown():
+            break
     stream.close()
 
 def main():
 
     rospy.init_node('stt_node')
     pub = rospy.Publisher('stt', Speech_msg, queue_size=10)
-
-    #TODO: check if rospy is shutting down and kill the program
-
     while not rospy.is_shutdown():
         #restart the client and sample
         stream = audioStreamingObject()
@@ -75,8 +75,10 @@ def main():
                     msg.confidence = 0
                 msg.is_final = result.is_final
                 pub.publish(msg)
-
-        rospy.loginfo("restarting google speech api due to time limit")
+        
+        if not rospy.is_shutdown():
+            rospy.loginfo("restarting google speech api due to time limit")
+    rospy.loginfo('STT main thread stopping')
 
 if __name__ == '__main__':
     main()
