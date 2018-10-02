@@ -22,11 +22,14 @@ def main():
     resp = stt_toggle(True)
     rospy.loginfo('enabled STT: {}'.format(resp))
     rospy.sleep(10)
+    rospy.loginfo("Disabling STT")
     stt_toggle(False)
     rospy.sleep(5)
+    rospy.loginfo("Re-enabling STT")
     stt_toggle(True)
     rospy.sleep(10)
     stt_toggle(False)
+    rospy.loginfo("Disabling STT")
 
 if __name__ == '__main__':
     main()

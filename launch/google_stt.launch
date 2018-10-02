@@ -1,5 +1,5 @@
 <launch>
-    <node name="google_stt" pkg="lab_ros_speech_to_text" respawn="true" type="stt.py" output="screen">
+    <node name="google_stt" pkg="lab_ros_speech_to_text" respawn="true" type="stt_node.py" output="screen">
         <!-- local hack to allow us to include virtualenv into the equation -->
         <env name="PYTHONPATH" value="$(env PYTHONPATH):/home/zhi/Dev/Envs/baxter3/lib/python35.zip:/home/zhi/Dev/Envs/baxter3/lib/python3.5:/home/zhi/Dev/Envs/baxter3/lib/python3.5/plat-x86_64-linux-gnu:/home/zhi/Dev/Envs/baxter3/lib/python3.5/lib-dynload:/usr/lib/python3.5:/usr/lib/python3.5/plat-x86_64-linux-gnu:/home/zhi/Dev/Envs/baxter3/lib/python3.5/site-packages"/>
         <env name="GOOGLE_APPLICATION_CREDENTIALS" value="/home/zhi/Keys/google_service_account.json" />
